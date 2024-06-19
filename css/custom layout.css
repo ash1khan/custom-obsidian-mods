@@ -1,0 +1,470 @@
+/* TODO: Table slight modification */
+
+/* TODO: write style settings guide for tweaking */
+/* === README ===
+	Snippet: Custom layout / Author: ash1kh
+	Version 0.0.1 (draft)
+	
+	- available cssClasses
+		- two-column-list
+		- {.two-column-list-block}
+		- three-column-list
+		- {.three-column-list-block}
+		- multi-column-list
+		- cornell-notes
+		- wide-view
+		- table-max 
+	- available Callout format
+		- [!multi-column]
+		- [!blank] / [!blank-container]
+*/
+
+:root {
+  /* astronvim theme colors  */
+  --syntax-color-orange: #f5983a;
+  --syntax-color-yellow: #dfab25;
+  --syntax-color-green: #87c05f;
+  /* #9ed087;*/
+  --syntax-color-cyan: #4ac2b8;
+  --syntax-color-purple: #dd97f1;
+  --syntax-color-blue: #5eb7ff;
+  --syntax-color-red: #ff838b;
+  --syntax-color-text: #adb0bb;
+  --syntax-color-comment: #696c76;
+  --syntax-color-mute: #595c66;
+
+  --ui-color-red: #f8747e;
+  --ui-color-orange: #eb8332;
+  --ui-color-yellow: #d09214;
+  --ui-color-green: #75ad47;
+  --ui-color-cyan: #00b298;
+  --ui-color-blue: #50a4e9;
+  --ui-color-purple: #cc83e3;
+
+  --ui-color-accent: #50a4e9;
+
+  --ui-color-tabline: #111317;
+  --ui-color-winbar: #797d87;
+  --ui-color-tool: #16181d;
+  --ui-color-base: #1a1d23;
+  --ui-color-inactive_base: #16181d;
+  --ui-color-statusline: #111317;
+  --ui-color-split: #111317;
+  --ui-color-popup: #16181d;
+  --ui-color-float: #16181d;
+  --ui-color-title: --ui-color-accent;
+  --ui-color-border: #3a3e47;
+  --ui-color-current_line: #1e222a;
+  --ui-color-scrollbar: --ui-color-accent;
+  --ui-color-selection: #26343f;
+  --ui-color-menu_selection: --ui-color-accent;
+  --ui-color-highlight: #1e222a;
+  --ui-color-none_text: #3a3e47;
+  --ui-color-text: #9b9fa9;
+  --ui-color-text_active: #adb0bb;
+  --ui-color-text_inactive: #494d56;
+  --ui-color-text_match: --ui-color-accent;
+
+  --term-color-black: --ui-color-tabline;
+  --term-color-bright_black: --ui-color-tabline;
+
+  --term-color-red: --syntax-color-red;
+  --term-color-bright_red: --syntax-color-red;
+
+  --term-color-green: --syntax-color-green;
+  --term-color-bright_green: --syntax-color-green;
+
+  --term-color-yellow: --syntax-color-yellow;
+  --term-color-bright_yellow: --syntax-color-yellow;
+
+  --term-color-blue: --syntax-color-blue;
+  --term-color-bright_blue: --syntax-color-blue;
+
+  --term-color-purple: --syntax-color-purple;
+  --term-color-bright_purple: --syntax-color-purple;
+
+  --term-color-cyan: --syntax-color-cyan;
+  --term-color-bright_cyan: --syntax-color-cyan;
+
+  --term-color-white: --ui-color-text;
+  --term-color-bright_white: --ui-color-text_active;
+
+  --term-color-background: --ui-color-base;
+  --term-color-foreground: --ui-color-text;
+  /* cornell notes  */
+  --cue-width: 120px;
+  --cue-offset: var(--cue-width);
+  --cue-line: 1px solid lightgrey;
+
+  --callout-nowrap-min-width: 250px;
+  --callout-min-width: 200px;
+
+  /* TODO: kanban lane color customizations  */
+  --kanban-color-1: #65d852;
+  --kanban-color-2: #e4e441;
+  --kanban-color-3: #b54f44;
+  --kanban-color-4: #b82b49;
+  --kanban-color-5: #722d41;
+  --kanban-color-6: #2e2e42;
+  --kanban-color-7: #36cb3f;
+}
+
+body {
+  --callout-gap: 0.5rem;
+  --callout-margin: 5px;
+  /* for list column, grid and card */
+  --list-min-width: 200px;
+  --col-rule-color: var(--background-modifier-border);
+  /* #b3b3b3; */
+  --col-rule-width: 1px;
+  --list-grid-min-width: 250px;
+  --list-grid-wide-min-width: 350px;
+  --mcl-card-header-border-width: 1px;
+  --mcl-card-bg-color: var(--background-secondary);
+  --mcl-card-gap: 0.2em;
+  --mcl-card-border-width: 1px;
+  --mcl-card-border-color: var(--background-modifier-border);
+}
+
+.theme-dark {
+  /*	--background-mcl-card: hsl(300, 5%, 15%); */
+  /* --progress-outline: rgba(255, 255, 255, 0.04); */
+  /* --checklist-done-decoration: rgba(255, 255, 255, 0.04) line-through; */
+}
+
+.theme-light {
+  /*	--background-mcl-card: hsl(300, 5%, 90%); */
+  /* --progress-outline: rgba(0, 0, 0, 0.05); */
+}
+
+/* TODO: cornell notes */
+
+.markdown-preview-view.cornell-note .markdown-preview-sizer,
+.markdown-source-view.cornell-note .markdown-preview-sizer {
+  max-width: var(--file-line-width);
+  margin-left: auto;
+  margin-right: auto;
+  margin-inline: 110px;
+  /* width: 100%; */
+}
+
+.markdown-preview-view.cornell-note .markdown-preview-sizer > div,
+.markdown-source-view.cornell-note .markdown-preview-sizer > div {
+  max-width: var(--max-width);
+  width: var(--line-width);
+  margin-inline: var(--content-margin) !important;
+}
+
+.markdown-preview-view.cornell-note
+  .markdown-preview-sizer
+  > div:has(p, ul, ol, pre),
+.markdown-source-view.cornell-note
+  .markdown-preview-sizer
+  > div:has(p, ul, ol, pre) {
+  border-left: var(--cue-line);
+  padding-left: 20px;
+}
+
+.markdown-preview-view.cornell-note aside:first-line,
+.markdown-source-view.cornell-note aside:first-line {
+  font-weight: 700;
+}
+
+.markdown-preview-view.cornell-note aside,
+.markdown-source-view.cornell-note aside {
+  font-style: italic;
+  font-family: var(--font-text);
+  font-size: var(--font-adaptive-normal);
+  font-weight: var(--normal-weight);
+  line-height: var(--line-height);
+  padding: 0px 8px 0px 0px;
+  margin-right: 10px;
+  position: absolute;
+  left: 15px;
+  max-width: var(--cue-width);
+}
+
+.markdown-preview-view.cornell-note div.cues-header,
+.markdown-source-view.cornell-note div.cues-header {
+  /* Keep sync with "h2, .markdown-rendered h2" selector */
+  position: absolute;
+  max-width: var(--cue-width);
+  width: var(--cue-width);
+  left: 15px;
+  top: 20;
+  padding: 0px 8px 0px 0px;
+  letter-spacing: -0.015em;
+  line-height: var(--h2-line-height);
+  color: var(--h2-color);
+  font-family: var(--h2-font);
+  font-size: var(--h2-size);
+  font-style: var(--h2-style);
+  font-variant: var(--h2-variant);
+  font-weight: var(--h2-weight);
+}
+
+.markdown-preview-view.cornell-note summary,
+.markdown-source-view.cornell-note summary {
+  display: none;
+}
+
+/* TODO: custom timeline view like obsidian-task-calender  */
+
+/* TODO: custom table designs */
+
+/* TODO: custom wide view */
+
+/* TODO: customize custom outlined callout like minimal theme  */
+
+/* TODO: properties metadata style like prism theme */
+
+/* === Style Settings === */
+
+/* @settings
+
+name: Custom Layout
+id: custom-layout
+settings:
+    -
+        id: multi-column-title
+        title: Multi Column Callout Settings
+        type: heading
+        level: 1
+		collapsed: true
+
+	-
+        id: mc-callout-general-title
+        title: MCC -- General
+        type: heading
+        level: 2
+		collapsed: false
+	-
+		id: mcc-img-snw-display
+		title: Hide SNW indicator for images in MC Callout
+		type: variable-select
+		default: none
+		options:
+			-
+				label: Show
+				value: inline
+			-
+				label: Hide
+				value: none
+
+	-
+        id: mc-callout-width-title
+        title: MCC -- Width
+        type: heading
+        level: 2
+		collapsed: false
+    -
+        id: callout-min-width
+        title: Minimum Sub-Callout Width
+        description: for sub-callout in [!multi-column]. in px units
+        type: variable-number-slider
+        default: 200
+        min: 100
+        max: 500
+        step: 50
+		format: px
+	-
+        id: callout-nowrap-min-width
+        title: Minimum NO-WRAP Sub-Callout Width
+        description: for sub-callout in [!multi-column|no-wrap]. in px units
+        type: variable-number-slider
+        default: 250
+        min: 100
+        max: 500
+        step: 50
+		format: px
+
+	-
+        id: mc-callout-gap-title
+        title: MCC -- Gap & Margin
+        type: heading
+        level: 2
+		collapsed: false
+    -
+        id: callout-gap
+        title: Sub-Callout Gap (any unit)
+        description: NO spacing between figure and unit
+        type: variable-text
+        default: 0.5rem
+	-
+		id: callout-margin
+		title: Sub-Callout Margin (any unit)
+		description: to allow some spacing for box-shadow
+		type: variable-text
+		default: 5px
+
+
+
+	-
+        id: float-callout-title
+        title: Float Callout Settings
+        type: heading
+        level: 1
+		collapsed: true
+
+	-
+        id: float-callout-general-title
+        title: FC -- General
+        type: heading
+        level: 2
+		collapsed: false
+
+	-
+		id: float-callout-snw-display
+		title: Hide SNW indicator in Callout Float / Aside
+		type: variable-select
+		default: none
+		options:
+			-
+				label: Show
+				value: inline-block
+			-
+				label: Hide
+				value: none
+
+	-
+        id: float-width-title
+        title: FC -- Width
+        type: heading
+        level: 2
+		collapsed: false
+    -
+        id: float-small-width
+        title: Floating Callout Width - Small (in px)
+        type: variable-number-slider
+        default: 300
+        min: 200
+        max: 450
+        step: 50
+		format: px
+    -
+        id: float-medium-width
+        title: Floating Callout Width - Medium (in px)
+        type: variable-number-slider
+        default: 400
+        min: 300
+        max: 550
+        step: 50
+		format: px
+    -
+        id: float-large-width
+        title: Floating Callout Width - Large (in px)
+        type: variable-number-slider
+        default: 600
+        min: 500
+        max: 750
+        step: 50
+		format: px
+
+	-
+        id: float-gap-title
+        title: FC -- Gap & Margin
+        type: heading
+        level: 2
+		collapsed: false
+	-
+	    id: float-callout-top-margin
+		title: Adjust the margin-top (any unit)
+	    type: variable-text
+	    default: 0em
+
+
+
+    -
+        id: mc-list-column-title
+        title: List Column Settings
+		description: using `{.xxx-column-list-xxx}` and `#mcl/list-column`
+        type: heading
+        level: 1
+		collapsed: true
+    -
+        id: list-min-width
+        title: Minimum Column Width (in px)
+        type: variable-number-slider
+        default: 200
+        min: 100
+        max: 500
+        step: 50
+		format: px
+    -
+        id: col-rule-color
+        title: Column Ruler Color
+		type: variable-themed-color
+		format: hsl
+		opacity: true
+		default-light: '#'
+		default-dark: '#'
+    -
+        id: col-rule-width
+        title: Column Ruler Width (in px)
+        type: variable-number-slider
+        default: 1
+        min: 0
+        max: 4
+        step: 1
+		format: px
+
+	-
+        id: mc-list-grid-title
+        title: List Grid and List Card
+		description: using `#mcl/list-grid` and `#mcl/list-card`
+        type: heading
+        level: 1
+		collapsed: true
+	-
+        id: list-grid-min-width
+        title: Minimum Grid/Card Width (in px/em or similar)
+		type: variable-text
+		default: 250px
+	-
+        id: list-grid-wide-min-width
+        title: Minimum Wide Grid/Card Width (in px/em or similar)
+		description: using `#mcl/list-grid-wide` and `#mcl/list-card-wide`
+		type: variable-text
+		default: 350px
+	-
+		id: mcl-card-bg-color
+		title: List Card Background Color
+		type: variable-themed-color
+		format: hsl
+		opacity: true
+		default-light: '#'
+		default-dark: '#'
+	-
+        id: mcl-card-header-border-width
+        title: Bottom Border for List Card Header (in px/em or similar)
+		description: set to 0 to disable the border
+		type: variable-text
+		default: 1px
+	-
+        id: mcl-card-gap
+        title: List Card Gap (in px/em or similar)
+		type: variable-text
+		default: 0.2em
+	-
+        id: mcl-card-border-width
+        title: List Card Border Width (in px/em or similar)
+		type: variable-text
+		default: 1px
+	-
+		id: mcl-card-border-color
+		title: List Card Border Color
+		type: variable-themed-color
+		format: hsl
+		opacity: true
+		default-light: '#'
+		default-dark: '#'
+
+    - 
+        id: cornell-notes
+        title: Cornell Notes Settings
+        description: cornell notes layout settings
+        type: heading
+        level: 1 
+        collapse: true
+
+*/

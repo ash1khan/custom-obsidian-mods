@@ -1,0 +1,149 @@
+/*------------------------------------------------------------
+        Obsidian minimal-progress by @ash1kh v1.0.0               
+
+        A custom colored progress bar  CSS snippet 
+        inspired by minimal theme progress bar 
+
+This snippet targets folders beginning with numbered prefixes, and applies full
+color formatting based on the root colors listed below. The prefixes are both
+customizable and extensible; feel free to change, add, and remove them based on
+your own titles and vault structure! By default I have a range of 8+1 colors,
+however I've provided some other common colors as a starting point for your own
+customization. Just swap out the color variable names in the prefix groups.
+
+---------------------------------------------------------------*/
+
+:root {
+  /* ======================= Colors ======================= */
+  --progress-color-red-rgb: 208, 66, 85;
+  --progress-color-orange-rgb: 213, 118, 63;
+  --progress-color-yellow-rgb: 229, 181, 103;
+  --progress-color-green-rgb: 168, 195, 115;
+  --progress-color-cyan-rgb: 115, 187, 178;
+  --progress-color-blue-rgb: 108, 153, 187;
+  --progress-color-purple-rgb: 158, 134, 200;
+  --progress-color-pink-rgb: 176, 82, 121;
+  --progress-color-red: #d04356;
+  --progress-color-orange: #d5763f;
+  --progress-color-yellow: #e5b567;
+  --progress-color-green: #a8c373;
+  --progress-color-cyan: #73bbb2;
+  --progress-color-blue: #6c99bb;
+  --progress-color-purple: #9e86c8;
+  --progress-color-pink: #b05279;
+
+  --progress-complete: var(--text-accent);
+}
+
+.markdown-rendered progress,
+.markdown-source-view.is-live-preview progress,
+.markdown-preview-view progress {
+  width: 220px;
+}
+
+.markdown-rendered progress[value]::-webkit-progress-bar,
+.markdown-source-view.is-live-preview progress[value]::-webkit-progress-bar,
+.markdown-preview-view progress[value]::-webkit-progress-bar {
+  box-shadow: inset 0px 0px 0px var(--border-width) var(--progress-outline);
+}
+
+.markdown-rendered progress[value^="1"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value^="1"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="1"]::-webkit-progress-value {
+  background-color: var(--progress-color-red);
+}
+
+.markdown-rendered progress[value^="2"]::-webkit-progress-value,
+.markdown-rendered progress[value^="3"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value^="2"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value^="3"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="2"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="3"]::-webkit-progress-value {
+  background-color: var(--progress-color-orange);
+}
+
+.markdown-rendered progress[value^="4"]::-webkit-progress-value,
+.markdown-rendered progress[value^="5"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value^="4"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value^="5"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="4"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="5"]::-webkit-progress-value {
+  background-color: var(--progress-color-yellow);
+}
+
+.markdown-rendered progress[value^="6"]::-webkit-progress-value,
+.markdown-rendered progress[value^="7"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value^="6"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value^="7"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="6"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="7"]::-webkit-progress-value {
+  background-color: var(--progress-color-green);
+}
+
+.markdown-rendered progress[value^="8"]::-webkit-progress-value,
+.markdown-rendered progress[value^="9"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value^="8"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value^="9"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="8"]::-webkit-progress-value,
+.markdown-preview-view progress[value^="9"]::-webkit-progress-value {
+  background-color: var(--progress-color-blue);
+}
+
+.markdown-rendered progress[value="1"]::-webkit-progress-value,
+.markdown-rendered progress[value="100"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value="1"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value="100"]::-webkit-progress-value,
+.markdown-preview-view progress[value="1"]::-webkit-progress-value,
+.markdown-preview-view progress[value="100"]::-webkit-progress-value {
+  background-color: var(--progress-color-purple);
+}
+
+.markdown-rendered progress[value="0"]::-webkit-progress-value,
+.markdown-rendered progress[value="2"]::-webkit-progress-value,
+.markdown-rendered progress[value="3"]::-webkit-progress-value,
+.markdown-rendered progress[value="4"]::-webkit-progress-value,
+.markdown-rendered progress[value="5"]::-webkit-progress-value,
+.markdown-rendered progress[value="6"]::-webkit-progress-value,
+.markdown-rendered progress[value="7"]::-webkit-progress-value,
+.markdown-rendered progress[value="8"]::-webkit-progress-value,
+.markdown-rendered progress[value="9"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value="0"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value="2"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value="3"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value="4"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value="5"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value="6"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value="7"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value="8"]::-webkit-progress-value,
+.markdown-source-view.is-live-preview
+  progress[value="9"]::-webkit-progress-value,
+.markdown-preview-view progress[value="0"]::-webkit-progress-value,
+.markdown-preview-view progress[value="2"]::-webkit-progress-value,
+.markdown-preview-view progress[value="3"]::-webkit-progress-value,
+.markdown-preview-view progress[value="4"]::-webkit-progress-value,
+.markdown-preview-view progress[value="5"]::-webkit-progress-value,
+.markdown-preview-view progress[value="6"]::-webkit-progress-value,
+.markdown-preview-view progress[value="7"]::-webkit-progress-value,
+.markdown-preview-view progress[value="8"]::-webkit-progress-value,
+.markdown-preview-view progress[value="9"]::-webkit-progress-value {
+  background-color: var(--progress-color-red);
+}
